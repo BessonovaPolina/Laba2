@@ -1,0 +1,47 @@
+import random
+
+
+class Soldier:
+    def __init__(self, object_number, team):
+        self.object_number = object_number
+        self.team = team
+
+    def per(self, hero):
+        print("Солдат" + str(self.object_number) + "следует за героем" + str(hero.object_number))
+
+class Hero:
+    def __init__(self, object_number):
+        self.object_number = object_number
+        self.level = 1
+
+    def increase_level(self):
+        self.level += 1
+
+team1_hero = Hero(1)
+team2_hero = Hero(2)
+
+team1_soldiers = []
+team2_soldiers = []
+
+for i in range(10):  # Generate 10 soldiers
+    object_number = i + 1  # Soldiers' object numbers start from 1
+    team = random.choice([1, 2])  # Randomly assign soldiers to teams
+
+    if team == 1:
+        team1_soldiers.append(Soldier(object_number, team))
+    else:
+        team2_soldiers.append(Soldier(object_number, team))
+
+print("длина команды солдат1: " + str(len(team1_soldiers)))
+print("длина команды солдат2: "+ str(len(team2_soldiers)))
+
+if len(team1_soldiers) > len(team2_soldiers):
+    team1_hero.increase_level()
+else:
+    team2_hero.increase_level()
+
+soldier = random.choice(team1_soldiers)  # Choose a random soldier from Team 1
+soldier.per(team1_hero)  # Make the soldier follow Team 1 hero
+
+print("Солдат: " + str(soldier.object_number))
+print("герой: " + str(team1_hero.object_number))
